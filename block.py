@@ -1,22 +1,23 @@
 import time 
 
+from crypto_hash import crypto_hash
 
 class Block:
     #A block is a unit of storage
 
-    def __init__(self,timestamp, last_hast, hash, data):
+    def __init__(self,timestamp, last_hash, hash, data):
         self.data = data 
-        self.last_hash = last_hast
+        self.last_hash = last_hash 
         self.timestamp = timestamp
-        self.hash = hash 
+        self.hash = crypto_hash(timestamp, last_hash, data)
 
     def __repr__(self):
         return (
             'Block ('
                 f'timestamp: {self.timestamp}, '
-                f'timestamp: {self.last_hash}, '
-                f'timestamp: {self.hash}, '
-                f'timestamp: {self.data}, ) '
+                f'last_hash: {self.last_hash}, '
+                f'hash: {self.hash}, '
+                f'data: {self.data}, ) '
         )
     
     @staticmethod 

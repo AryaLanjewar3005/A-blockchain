@@ -1,6 +1,13 @@
 import time 
 
-from crypto_hash import crypto_hash
+from backend.utils.crypto_hash import crypto_hash
+
+GENESIS_DATA = {
+    'timestamp' : 1, 
+    'last_hash' : 'genesis_last_hash',
+    'hash' : 'genesis_hash',
+    'data' : []
+}
 
 class Block:
     #A block is a unit of storage
@@ -9,8 +16,7 @@ class Block:
         self.data = data 
         self.last_hash = last_hash 
         self.timestamp = timestamp
-        self.hash = crypto_hash(timestamp, last_hash, data)
-
+        self.hash = hash
     def __repr__(self):
         return (
             'Block ('
@@ -31,8 +37,8 @@ class Block:
         return Block(timestamp, last_hash, hash, data)
 
     def genesis():
-        return Block(1, "genesis_last_hash", 'genesis_hash', [])
-    
+        #return Block(GENESIS_DATA['timestamp'], GENESIS_DATA['last_hash'], GENESIS_DATA['hash'], GENESIS_DATA['data'])
+        return Block(**GENESIS_DATA) 
 
 def main():
     print(f'block.py __name__ : {__name__}')

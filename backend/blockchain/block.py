@@ -69,7 +69,7 @@ class Block:
         """
         if(new_timestamp - last_block.timestamp) < MINE_RATE:
             return last_block.difficulty + 1
-        if(last_block.difficulty > 0):
+        if(last_block.difficulty - 1 > 0):
             return last_block.difficulty - 1
         return 1
 
